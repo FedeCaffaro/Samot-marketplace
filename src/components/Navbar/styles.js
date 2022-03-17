@@ -4,6 +4,7 @@ const drawerWidth = 0;
 
 export default makeStyles((theme) => ({
   appBar: {
+    background : '#000000',
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
     [theme.breakpoints.up('sm')]: {
@@ -16,6 +17,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
+    color: 'black',
   },
   image: {
     marginRight: '10px',
@@ -68,5 +70,14 @@ export default makeStyles((theme) => ({
   buttons: {
     display: 'flex',
     alignItems: 'center',
+  },
+  connectButton: {
+    display: 'flex',
+    alignItems: 'center',
+    primary: 'FFFFFF',
+    background: "#21b6ae",
+  },
+  cartIcon: {
+    color: 'white',
   },
 }));
