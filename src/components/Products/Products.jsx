@@ -1,6 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-
+import { Grid, Box } from '@material-ui/core';
+import banner from '../../assets/banner.png';
 import Product from './Product/Product';
 import useStyles from './styles';
 
@@ -11,6 +11,17 @@ const Products = ({ products, onAddToCart }) => {
 
   return (
     <main className={classes.content}>
+        <Box className={classes.banner}
+          component="img"
+          sx={{
+            height: '100%',
+            width: "100%",
+            maxHeight: { xs: 233, md: 167 },
+            maxWidth: { xs: 350, md: 250 },
+          }}
+          alt="$AMOT OR NOT"
+          src={banner}
+        />
       <div className={classes.toolbar} />
       <Grid container justify="center" spacing={4}>
         {products.map((product) => (

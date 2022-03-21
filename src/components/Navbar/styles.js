@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
   appBar: {
     background : '#000000',
     boxShadow: 'none',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+    borderBottom: '2px solid rgba(15, 15, 15, 0.4)',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -18,6 +18,15 @@ export default makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
     color: 'black',
+    fontWeight: 'medium',
+  },
+  subtitle: {
+    flexGrow: 1,
+    alignItems: 'center',
+    display: 'flex',
+    textDecoration: 'none',
+    color: 'white',
+    fontWeight: 'medium',
   },
   image: {
     marginRight: '10px',
@@ -74,8 +83,16 @@ export default makeStyles((theme) => ({
   connectButton: {
     display: 'flex',
     alignItems: 'center',
-    primary: 'FFFFFF',
-    background: "#21b6ae",
+    backgroundColor: "#ffc107",
+    borderRadius: 7,
+  },
+  disconnectButton: {
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 7,
+    backgroundColor: "#000000",
+    borderWidth: '2px solid',
+    borderColor: '#ffc107',
   },
   cartIcon: {
     color: 'white',

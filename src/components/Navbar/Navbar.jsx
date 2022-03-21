@@ -71,15 +71,19 @@ const PrimarySearchAppBar = ({ totalItems }) => {
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title}>
-            <img src={logo} alt="commerce.js" height="50px" className={classes.image} /> Samot Shop
+            <img src={logo} alt="samotShop.js" height="50px" className={classes.image} />
           </Typography>
-          <div className={classes.connectButton}>
+          <Grid container justify="flex-end">
             {active ?
-              <Button className={classes.connectButton} variant="outlined" type="button" color="secondary" onClick={disconnect}>Disconnect ...{account.slice(-8)}</Button>
+              <Button className={classes.disconnectButton} variant="outlined" type="button" onClick={disconnect}>
+                <Typography variant="subtitle: 'h6'" className={classes.subtitle}>Disconnect ...{account.slice(-8)}</Typography>
+              </Button>
             : 
-              <Button className={classes.connectButton} variant="contained" type="button" color="primary" onClick={connect}>Connect to MetaMask</Button>
+              <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
+                <Typography variant="subtitle: 'h6'" color="common.white" className={classes.title}>Connect to MetaMask </Typography>
+              </Button>
             }
-          </div>
+          </Grid>
           <div className={classes.grow} />
           {location.pathname === '/' && (
           <div className={classes.button}>
