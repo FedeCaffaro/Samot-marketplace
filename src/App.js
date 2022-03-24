@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, ThemeProvider, createMuiTheme, Grid, Slider } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import { Navbar, Products, Cart, Checkout } from './components';
+import { CountProvider } from './components/Store/CreateContext'
+import { useMatchMedia } from './components/useMatchMedia'
+import { Navbar, Products, Cart, ProductDescription, ViewImage, Checkout } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -11,6 +12,12 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: ['Kumbh Sans', 'sans-serif'].join(','),
+    },
+  })
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -71,6 +78,8 @@ const App = () => {
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
+  const isMobileResolution = useMatchMedia('(max-width:1024px)', true)
+
   return (
     <Router>
       <div style={{ display: 'flex' }}>
@@ -85,6 +94,21 @@ const App = () => {
           </Route>
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
+          </Route>
+          <Route path="/description" exact>
+          <ThemeProvider theme={theme}>
+      <CountProvider>
+        <Navbar />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            {isMobileResolution ? <Slider /> : <ViewImage />}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <ProductDescription />
+          </Grid>
+        </Grid>
+      </CountProvider>
+    </ThemeProvider>
           </Route>
         </Switch>
       </div>

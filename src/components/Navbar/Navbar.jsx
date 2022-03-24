@@ -71,7 +71,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar>
           <Typography component={Link} to="/" variant="h6" className={classes.title}>
-            <img src={logo} alt="samotShop.js" height="50px" className={classes.image} />
+            <img src={logo} alt="samotShop.js" height="45px" className={classes.image} />
           </Typography>
           <Grid container justify="flex-end">
             {active ?
@@ -80,7 +80,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
               </Button>
             : 
               <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
-                <Typography variant="subtitle: 'h6'" color="common.white" className={classes.title}>Connect to MetaMask </Typography>
+                <Typography variant="subtitle: 'h6'" color="common.white" className={classes.title}>Connect Wallet </Typography>
               </Button>
             }
           </Grid>

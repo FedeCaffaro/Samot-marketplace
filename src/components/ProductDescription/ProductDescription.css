@@ -1,0 +1,11 @@
+.plus {
+  margin-left: 50%;
+}
+
+.plus:hover {
+  color: hsl(26, 100%, 70%);
+}
+
+.focusVisibleClassName {
+  box-shadow: none;
+}

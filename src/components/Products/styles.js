@@ -6,14 +6,15 @@ export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    backgroundColor: '#0e0e0e',
+    backgroundColor: 'black',
     padding: theme.spacing(3),
   },
   banner: {
     boxShadow: 'none',
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xs')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
+      
     },
   },
   root: {

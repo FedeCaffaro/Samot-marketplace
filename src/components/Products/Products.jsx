@@ -13,19 +13,13 @@ const Products = ({ products, onAddToCart }) => {
     <main className={classes.content}>
         <Box className={classes.banner}
           component="img"
-          sx={{
-            height: '100%',
-            width: "100%",
-            maxHeight: { xs: 233, md: 167 },
-            maxWidth: { xs: 350, md: 250 },
-          }}
           alt="$AMOT OR NOT"
           src={banner}
         />
       <div className={classes.toolbar} />
-      <Grid container justify="center" spacing={4}>
+      <Grid container justify="flex-start" spacing={3}>
         {products.map((product) => (
-          <Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+          <Grid key={product.id} item xs={6} sm={6} md={4} lg={3}>
             <Product product={product} onAddToCart={onAddToCart} />
           </Grid>
         ))}

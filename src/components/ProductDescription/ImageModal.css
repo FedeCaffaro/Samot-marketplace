@@ -1,0 +1,19 @@
+.modalContent {
+  background: none;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: none;
+  margin-right: 15%;
+}
+
+.carousel {
+  width: 85%;
+}
+
+.img {
+  height: 400px;
+  width: max-content;
+  border-radius: 12px;
+}
