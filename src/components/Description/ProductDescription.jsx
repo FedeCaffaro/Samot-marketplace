@@ -8,7 +8,7 @@ import { useStyles } from './ProductStyles';
 const ProductDescription = ({ product, onAddToCart  }) => {
   const classes = useStyles()
   const isMobileResolution = useMatchMedia('(max-width:1024px)', true)
-  const [num, setNum] = useState(0)
+  const [num, setNum] = useState(1)
 
   const handleAddToCart = () => onAddToCart(product.id, 1);
 
@@ -20,11 +20,20 @@ const ProductDescription = ({ product, onAddToCart  }) => {
       >
         SNEAKER COMPANY
       </Typography>
-
+      
       <Typography variant='h3' className={`${classes.title} ${classes.bold}`}>
         Fall Limited Edition Sneakers
       </Typography>
       <Typography className={classes.description}>
+        These low-profile sneakers are your perfect casual wear companion.
+        Featuring a durable rubber outer sole, they'll withstand everything the
+        weather can offer.
+        These low-profile sneakers are your perfect casual wear companion.
+        Featuring a durable rubber outer sole, they'll withstand everything the
+        weather can offer.
+        These low-profile sneakers are your perfect casual wear companion.
+        Featuring a durable rubber outer sole, they'll withstand everything the
+        weather can offer.
         These low-profile sneakers are your perfect casual wear companion.
         Featuring a durable rubber outer sole, they'll withstand everything the
         weather can offer.
@@ -59,7 +68,7 @@ const ProductDescription = ({ product, onAddToCart  }) => {
             <Remove
               className={`${classes.remove} ${classes.orangeColor}`}
               onClick={() => {
-                0 === num ? setNum(0) : setNum(num - 1)
+                1 === num ? setNum(1) : setNum(num - 1)
               }}
             />
             <Typography className={`${classes.amount} ${classes.bold}`}>

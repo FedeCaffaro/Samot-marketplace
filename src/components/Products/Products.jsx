@@ -26,6 +26,7 @@ const Products = ({ products, onAddToCart }) => {
       </Grid>
     </main>
   );
+  console.log(products);
 };
 
 export default Products;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, ThemeProvider, createMuiTheme, Grid, Slider } from '@material-ui/core';
+import { CssBaseline, ThemeProvider, createMuiTheme, Box } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { CountProvider } from './components/Store/CreateContext'
-import { useMatchMedia } from './components/useMatchMedia'
-import { Navbar, Products, Cart, ProductDescription, ViewImage, Checkout } from './components';
+import { Navbar, Products, Cart, ProductDescription, ViewImage, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -78,13 +77,12 @@ const App = () => {
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
-  const isMobileResolution = useMatchMedia('(max-width:1024px)', true)
-
   return (
     <Router>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', overflow: 'hidden' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
+        <Box sx={{ width: 'auto'}}>
         <Switch>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
@@ -95,22 +93,23 @@ const App = () => {
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
-          <Route path="/description" exact>
-          <ThemeProvider theme={theme}>
-      <CountProvider>
-        <Navbar />
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            {isMobileResolution ? <Slider /> : <ViewImage />}
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ProductDescription />
-          </Grid>
-        </Grid>
-      </CountProvider>
-    </ThemeProvider>
-          </Route>
+          {/* <Route exact path="/description">
+            <ThemeProvider theme={theme}>
+              <CountProvider>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <ViewImage products={products}/>
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <ProductDescription products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
+                  </Grid>
+                </Grid>
+              </CountProvider>
+            </ThemeProvider>
+          </Route> */}
         </Switch>
+        <Footer/>
+        </Box>
       </div>
     </Router>
   );

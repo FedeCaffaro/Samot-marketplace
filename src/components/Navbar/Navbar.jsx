@@ -80,12 +80,12 @@ const PrimarySearchAppBar = ({ totalItems }) => {
               </Button>
             : 
               <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
-                <Typography variant="subtitle: 'h6'" color="common.white" className={classes.title}>Connect Wallet </Typography>
+                <Typography variant="subtitle: 'h6'" className={classes.title}>Connect Wallet </Typography>
               </Button>
             }
           </Grid>
           <div className={classes.grow} />
-          {location.pathname === '/' && (
+          {(location.pathname === '/' || location.pathname === '/description') && (
           <div className={classes.button}>
             <IconButton component={Link} to="/cart" aria-label="Show cart items" color="inherit">
               <Badge badgeContent={totalItems} color="secondary">

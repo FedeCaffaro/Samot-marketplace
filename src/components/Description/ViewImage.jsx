@@ -1,21 +1,20 @@
 import { Container, makeStyles } from '@material-ui/core'
 import React, { useState } from 'react'
 import './ViewImage.css'
-import ImageModal from './ImageModal'
 import { ThumbnailImgs, Images } from './imgData'
 
 const useStyles = makeStyles((theme) => ({
   container: {
     marginLeft: theme.spacing(20),
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(14),
   },
 }))
 
 const ViewImage = () => {
   const classes = useStyles()
-  const [show, setShow] = useState(false)
-  const handleShow = () => setShow(true)
-  const handleClose = () => setShow(false)
+  // const [show, setShow] = useState(false)
+  // const handleShow = () => setShow(true)
+  // const handleClose = () => setShow(false)
   const [value, setValue] = useState(0)
   const { src } = Images[value]
 
@@ -27,7 +26,7 @@ const ViewImage = () => {
         width={378}
         height={350}
         style={{ borderRadius: '8px' }}
-        onClick={handleShow}
+        // onClick={handleShow}
         className='mainImg'
       />
       <div style={{ display: 'flex' }}>
@@ -46,7 +45,6 @@ const ViewImage = () => {
             </div>
           )
         })}
-        <ImageModal show={show} onHide={handleClose} />
       </div>
     </Container>
   )
