@@ -3,29 +3,14 @@ import { Typography, Button, Divider } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useWeb3React } from "@web3-react/core";
-import { ethers } from 'ethers';
-import { contractAbi, contractAddress } from '../../Constants/constants';
 
 import Review from './Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
-  const { active, library:provider, connector, activate, deactivate } = useWeb3React()
 
-  async function buy() {
-    if (active) {
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-      try {
-        await contract.buyItems();
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log("Please install MetaMask");
-    }
-  }
+
 
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();

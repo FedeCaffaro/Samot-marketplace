@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography, Button, Grid } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
 import { Link, useLocation } from 'react-router-dom';
-import { useWeb3React } from "@web3-react/core"
-import { injected } from "../Wallet/connectors"
+import { useWeb3React } from '@web3-react/core';
+import { injected } from '../Wallet/connectors';
 
 import logo from '../../assets/logo.png';
 import useStyles from './styles';
 
 const PrimarySearchAppBar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const { active, account, library, connector, activate, deactivate } = useWeb3React()
+  const { active, account, library, connector, activate, deactivate } = useWeb3React();
 
   const classes = useStyles();
   const location = useLocation();
@@ -23,31 +23,31 @@ const PrimarySearchAppBar = ({ totalItems }) => {
     const connectWalletOnPageLoad = async () => {
       if (localStorage?.getItem('isWalletConnected') === 'true') {
         try {
-          await activate(injected)
-          localStorage.setItem('isWalletConnected', true)
+          await activate(injected);
+          localStorage.setItem('isWalletConnected', true);
         } catch (ex) {
-          console.log(ex)
+          console.log(ex);
         }
       }
     }
-    connectWalletOnPageLoad()
+    connectWalletOnPageLoad();
   }, [])
 
   async function connect() {
     try {
-      await activate(injected)
-      localStorage.setItem('isWalletConnected', true)
+      await activate(injected);
+      localStorage.setItem('isWalletConnected', true);
     } catch (ex) {
-      console.log(ex)
+      console.log(ex);
     }
   }
 
   async function disconnect() {
     try {
-      deactivate()
-      localStorage.setItem('isWalletConnected', false)
+      deactivate();
+      localStorage.setItem('isWalletConnected', false);
     } catch (ex) {
-      console.log(ex)
+      console.log(ex);
     }
   }
 
@@ -75,13 +75,16 @@ const PrimarySearchAppBar = ({ totalItems }) => {
           </Typography>
           <Grid container justify="flex-end">
             {active ?
-              <Button className={classes.disconnectButton} variant="outlined" type="button" onClick={disconnect}>
-                <Typography variant="subtitle: 'h6'" className={classes.subtitle}>Disconnect ...{account.slice(-8)}</Typography>
-              </Button>
-            : 
-              <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
-                <Typography variant="subtitle: 'h6'" className={classes.title}>Connect Wallet </Typography>
-              </Button>
+              (
+                <Button className={classes.disconnectButton} variant="outlined" type="button" onClick={disconnect}>
+                  <Typography variant="subtitle: 'h6'" className={classes.subtitle}>Disconnect ...{account.slice(-8)}</Typography>
+                </Button>
+              ):
+              (
+                <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
+                  <Typography variant="subtitle: 'h6'" className={classes.title}>Connect Wallet </Typography>
+                </Button>
+              )
             }
           </Grid>
           <div className={classes.grow} />
