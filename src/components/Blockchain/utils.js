@@ -9,11 +9,11 @@ async function approveBuy(){
         const signer = provider.getSigner();
         const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
         try{
-
             const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-            return approveTxn;
+            return {data: approveTxn, status:"ok"};
+
         } catch(error){
-            console.log(error);
+            return { data: error, status:"error"}
             }
     } else {
         console.log("Please install Metamask");
@@ -26,9 +26,9 @@ async function checkAllowance(){
         const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
         try {
             const allowanceAmount = await tokenContract.allowance(signer,contractAddress);
-            return allowanceAmount;
+            return { data: allowanceAmount, status:"ok"};
         } catch(error){
-            console.log(error);
+            return { data: error, status:"error"}
         }
     } else {
         console.log("Please install Metamask");
@@ -43,9 +43,9 @@ async function buy(purchaseTotal) {
         if (checkAllowance() >= 1000 ){
             try {
                 const buyTxn = await contract.buyItems(purchaseTotal);
-                return buyTxn;
+                return { data: buyTxn, status:"ok" };
             } catch (error) {
-                console.log(error);
+                return { data: error, status:"error" }
             }
         } else{
             const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
