@@ -4,6 +4,8 @@ export default makeStyles(() => ({
   root: {
     // maxWidth: 345, original width style
     maxWidth: '100%',
+    backgroundColor: '#191919',
+    outline: ''
   },
   actionArea: {
     borderRadius: 16,
@@ -13,8 +15,8 @@ export default makeStyles(() => ({
     },
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    height: 350,
+    //paddingTop: '56.25%', // 16:9
   },
   cardActions: {
     display: 'flex',
@@ -25,5 +27,10 @@ export default makeStyles(() => ({
     //display: 'flex',
     //justifyContent: 'space-between',
     textAlign: 'center',
+    backgroundColor: '#191919',
+    color: 'white',
+  },
+  cartIcon: {
+    color: 'white',
   },
 }));

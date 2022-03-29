@@ -17,6 +17,9 @@ export default makeStyles((theme) => ({
       
     },
   },
+  arrivalsBanner: {
+    alignItems: 'center',
+  },
   root: {
     flexGrow: 1,
   },

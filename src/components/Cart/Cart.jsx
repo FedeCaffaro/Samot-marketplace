@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
+import { Container, Typography, Button, Grid, Paper, Box } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
 import CartItem from './CartItem/CartItem';
 import useStyles from './styles';
+import yourcart from '../../assets/yourcart.png';
 
 const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   const classes = useStyles();
@@ -20,20 +20,34 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderCart = () => (
     <>
+      <Box
+        pb={5}
+        component="img"
+        alt="Your Cart"
+        src={yourcart}
+        width={200}
+        alignSelf="center"
+      />
+      <Paper className={classes.yellowPaper}>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={4} key={lineItem.id}>
+          <Grid item xs={6} sm={3} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}
       </Grid>
       <div className={classes.cardDetails}>
-        <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+        <Typography variant="h4" gutterBottom >Subtotal: {cart.subtotal.formatted} $SAMOT</Typography>
         <div>
-          <Button className={classes.emptyButton} size="large" type="button" variant="contained" color="secondary" onClick={handleEmptyCart}>Empty cart</Button>
-          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+          <Button className={classes.emptyButton} size="large" type="button" variant="outlined" onClick={handleEmptyCart}>
+            <Typography className={classes.subtitle}>Empty cart</Typography>
+          </Button>
+          <Button className={classes.checkoutButton} component={Link} to="/checkout" size="large" type="button" variant="contained">
+            <Typography className={classes.title}>Checkout</Typography>
+          </Button>
         </div>
       </div>
+      </Paper>
     </>
   );
 

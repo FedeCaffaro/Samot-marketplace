@@ -88,7 +88,9 @@ const App = () => {
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
           <Route exact path="/cart">
+            <div style={{backgroundColor: 'black'}}>
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
+            </div>
           </Route>
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
