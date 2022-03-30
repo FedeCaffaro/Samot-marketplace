@@ -2,14 +2,10 @@ import { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import { contractAbi, contractAddress,tokenAbi,tokenAddress,tokenAllowance,etherscanUrl } from '../../Constants/constants';
-import { CheckoutToken } from '../CheckoutForm/Checkout/Checkout';
 
 const { account,active, library:provider } = useWeb3React();
 const [transactionUrl, setTransactionUrl] = useState("");
-const [pending, setPending] = useState(false);
 const [loading, setLoading] = useState(false);
-const [allowanceAmount, setAllowanceAmount] = useState(0);
-const totalPurchase = 100;
 
 async function approveBuy(){
     if (active) {

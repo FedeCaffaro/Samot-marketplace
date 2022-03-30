@@ -1,19 +1,79 @@
-import {buy, approveBuy,checkAllowance} from './utils';
-import { useState, useEffect } from 'react';
-import { etherscanUrl } from '../../Constants/constants';
-import { CheckoutToken } from '@chec/commerce.js/types/checkout-token';
+import React from 'react';
+import { useState } from 'react';
+import { Button } from '@material-ui/core';
+import { useWeb3React } from '@web3-react/core';
+import Shop from "../../Constants/Shop.json"
+import Token from "../../Constants/Token.json"
 
-const Transactions = () => {
+import { ethers , BigNumber} from "ethers";
+
+const tokenAddress = Token.address;
+const tokenAbi = Token.abi;
+const contractAbi = Shop.abi;
+const tokenAllowance = 20000;
+const etherscanUrl = 'https://rinkeby.etherscan.io';
+const contractAddress = Shop.address;
+
+export const Transactions = () => {
 
     const [transactionUrl, setTransactionUrl] = useState("");
     const [loading, setLoading] = useState(false);
-    const [allowanceAmount, setAllowanceAmount] = useState(0);
     const [error, setError] = useState(false);
+    const {
+        active,
+        activate,
+        library:provider,
+      } = useWeb3React();
+
+    async function approveBuy(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
+        try{
+            const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
+            return approveTxn;
+  
+        } catch(error){
+            return error;
+            }
+    }
+  
+    async function checkAllowance(){
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
+            try {
+                const allowanceAmount = await tokenContract.allowance(signer,contractAddress);
+                return allowanceAmount;
+            } catch(error){
+                console.log(error);
+            }
+    }
+  
+    async function buy(){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(contractAddress, contractAbi, signer);
+            const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
+            if (checkAllowance() >= 1000 ){
+                try {
+                    const buyTxn = await contract.buyItems(1);
+                    return buyTxn;
+                } catch (error) {
+                    return error;
+                }
+            } else{
+                const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
+                const buyTxn = await contract.buyItems(1);
+                return approveTxn , buyTxn ;
+            }
+        }
 
 
-    const purchase = async() =>{
+
+    const purchase = async(purchaseTotal) =>{
         setLoading(true);
-        const result = await buy(wallet.account, numberOfTokens, price)
+        const result = await buy(purchaseTotal)
         if (result.error) {
           setError(result.error)
         } else {
@@ -21,7 +81,9 @@ const Transactions = () => {
         }
     }
 
-
-
-
+    return(
+      <>
+        <Button variant="outlined" onClick={checkAllowance}>Buy </Button>
+      </>
+    )
 }

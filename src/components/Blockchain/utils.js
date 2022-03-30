@@ -2,7 +2,7 @@ import { useWeb3React } from '@web3-react/core';
 import { ethers } from 'ethers';
 import { contractAbi, contractAddress,tokenAbi,tokenAddress,tokenAllowance } from '../../Constants/constants';
 
-const { account,active, library:provider } = useWeb3React();
+const { account, active, library:provider } = useWeb3React();
 
 async function approveBuy(){
     if (active) {
@@ -35,7 +35,7 @@ async function checkAllowance(){
     }
 }
 
-async function buy(purchaseTotal) {
+export const buy = async  (purchaseTotal) =>{
     if (active) {
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, contractAbi, signer);
@@ -50,7 +50,7 @@ async function buy(purchaseTotal) {
         } else{
             const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
             const buyTxn = await contract.buyItems(purchaseTotal);
-            return approveTxn,buyTxn;
+            return approveTxn , buyTxn ;
         }
 
         } else {
