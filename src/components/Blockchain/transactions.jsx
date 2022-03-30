@@ -10,7 +10,8 @@ import { ethers , BigNumber} from "ethers";
 const tokenAddress = Token.address;
 const tokenAbi = Token.abi;
 const contractAbi = Shop.abi;
-const tokenAllowance = 20000;
+const tokenAllowance = ethers.utils.parseEther("20000");
+
 const etherscanUrl = 'https://rinkeby.etherscan.io';
 const contractAddress = Shop.address;
 
@@ -22,6 +23,7 @@ export const Transactions = () => {
     const {
         active,
         activate,
+        account,
         library:provider,
       } = useWeb3React();
 
@@ -30,7 +32,7 @@ export const Transactions = () => {
         const signer = provider.getSigner();
         const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
         try{
-            const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
+            const approveTxn = await tokenContract.approve(contractAddress,BigNumber.from(tokenAllowance));
             return approveTxn;
   
         } catch(error){
@@ -43,21 +45,21 @@ export const Transactions = () => {
             const signer = provider.getSigner();
             const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
             try {
-                const allowanceAmount = await tokenContract.allowance(signer,contractAddress);
+                const allowanceAmount = await tokenContract.allowance(account,contractAddress);
                 return allowanceAmount;
             } catch(error){
                 console.log(error);
             }
     }
   
-    async function buy(){
+    async function buy(totalCost){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
             const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-            if (checkAllowance() >= 1000 ){
+            if (checkAllowance() >= ethers.utils.parseEther("1000") ){
                 try {
-                    const buyTxn = await contract.buyItems(1);
+                    const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
                     return buyTxn;
                 } catch (error) {
                     return error;
@@ -83,7 +85,7 @@ export const Transactions = () => {
 
     return(
       <>
-        <Button variant="outlined" onClick={checkAllowance}>Buy </Button>
+        <Button variant="outlined" onClick={buy("1")}>Buy </Button>
       </>
     )
 }
