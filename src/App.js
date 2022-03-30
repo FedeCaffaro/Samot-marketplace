@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, ThemeProvider, createMuiTheme, Box } from '@material-ui/core';
+import { CssBaseline, Box } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { CountProvider } from './components/Store/CreateContext'
-import { Navbar, Products, Cart, ProductDescription, ViewImage, Checkout, Footer } from './components';
+import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
 
 const App = () => {
@@ -11,12 +10,6 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-
-  const theme = createMuiTheme({
-    typography: {
-      fontFamily: ['Kumbh Sans', 'sans-serif'].join(','),
-    },
-  })
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();

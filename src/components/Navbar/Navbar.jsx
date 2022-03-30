@@ -10,7 +10,7 @@ import useStyles from './styles';
 
 const PrimarySearchAppBar = ({ totalItems }) => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const { active, account, library, connector, activate, deactivate } = useWeb3React();
+  const { active, account, activate, deactivate } = useWeb3React();
 
   const classes = useStyles();
   const location = useLocation();
@@ -31,6 +31,7 @@ const PrimarySearchAppBar = ({ totalItems }) => {
       }
     }
     connectWalletOnPageLoad();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function connect() {
@@ -77,12 +78,12 @@ const PrimarySearchAppBar = ({ totalItems }) => {
             {active ?
               (
                 <Button className={classes.disconnectButton} variant="outlined" type="button" onClick={disconnect}>
-                  <Typography variant="subtitle: 'h6'" className={classes.subtitle}>Disconnect ...{account.slice(-8)}</Typography>
+                  <Typography variant="subtitle2" className={classes.subtitle}>Disconnect ...{account.slice(-8)}</Typography>
                 </Button>
               ):
               (
                 <Button className={classes.connectButton} variant="contained" type="button" onClick={connect}>
-                  <Typography variant="subtitle: 'h6'" className={classes.title}>Connect Wallet </Typography>
+                  <Typography variant="subtitle2" className={classes.title}>Connect Wallet </Typography>
                 </Button>
               )
             }

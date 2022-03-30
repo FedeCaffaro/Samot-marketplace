@@ -1,7 +1,6 @@
 import React from 'react';
 import { CardActionArea, Card, CardMedia, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
-import samotToken from '../../../assets/samot-token.png'
 
 import useStyles from './styles';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, Typography } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import banner from '../../assets/banner.png';
 import arrivals from '../../assets/arrivals.png';
 import Product from './Product/Product';
@@ -34,7 +34,6 @@ const Products = ({ products, onAddToCart }) => {
       </Grid>
     </main>
   );
-  console.log(products);
 };
 
 export default Products;

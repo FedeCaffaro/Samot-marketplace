@@ -1,42 +1,9 @@
 import React from 'react';
-import { Typography, Button, Card, CardActions, CardContent, CardMedia, Box, Grid  } from '@material-ui/core';
-import GoogleFontLoader from 'react-google-font-loader';
-import NoSsr from '@material-ui/core/NoSsr';
-import { Info, InfoCaption, InfoSubtitle, InfoTitle } from '@mui-treasury/components/info';
-import { useGalaxyInfoStyles } from '@mui-treasury/styles/info/galaxy';
-import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
+import { Typography, Button, Card, CardActions, CardContent, CardMedia, Grid  } from '@material-ui/core';
 import useStyles from './styles';
 
-// import { makeStyles } from '@material-ui/styles';
-
-// const useStyles = makeStyles(() => ({
-//   card: {
-//     borderRadius: '1rem',
-//     boxShadow: 'none',
-//     position: 'relative',
-//     minWidth: 100,
-//     minHeight: 180,
-//     '&:after': {
-//       content: '""',
-//       display: 'block',
-//       position: 'absolute',
-//       width: '100%',
-//       height: '64%',
-//       bottom: 0,
-//       zIndex: 1,
-//       background: 'linear-gradient(to top, #000, rgba(0,0,0,0))',
-//     },
-//   },
-//   content: {
-//     position: 'absolute',
-//     zIndex: 2,
-//     bottom: 0,
-//     width: '100%',
-//   },
-// }));
-
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
-  //const mediaStyles = useCoverCardMediaStyles({ bgPosition: 'top' });
+
   const classes = useStyles();
 
   const handleUpdateCartQty = (lineItemId, newQuantity) => onUpdateCartQty(lineItemId, newQuantity);

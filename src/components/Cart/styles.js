@@ -5,9 +5,6 @@ export default makeStyles((theme) => ({
   yellowPaper: {
     backgroundColor: "#000000",
   },
-  title: {
-    marginTop: '5%',
-  },
   emptyButton: {
     minWidth: '150px',
     [theme.breakpoints.down('xs')]: {

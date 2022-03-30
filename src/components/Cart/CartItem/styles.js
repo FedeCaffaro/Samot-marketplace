@@ -1,5 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import CartItem from './CartItem';
 
 export default makeStyles(() => ({
   cartItem: {

@@ -1,5 +1,5 @@
 import { Typography, Container, Button } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Add, Remove, ShoppingCartOutlined } from '@material-ui/icons';
 import './ProductDescription.css';
 import { useMatchMedia } from '../useMatchMedia';

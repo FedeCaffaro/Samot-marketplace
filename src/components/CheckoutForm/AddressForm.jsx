@@ -21,7 +21,6 @@ const AddressForm = ({ checkoutToken, test }) => {
     setShippingCountries(countries);
     setShippingCountry(Object.keys(countries)[0]);
   };
-
   const fetchSubdivisions = async (countryCode) => {
     const { subdivisions } = await commerce.services.localeListSubdivisions(countryCode);
 
@@ -38,6 +37,8 @@ const AddressForm = ({ checkoutToken, test }) => {
 
   useEffect(() => {
     fetchShippingCountries(checkoutToken.id);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const AddressForm = ({ checkoutToken, test }) => {
 
   useEffect(() => {
     if (shippingSubdivision) fetchShippingOptions(checkoutToken.id, shippingCountry, shippingSubdivision);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shippingSubdivision]);
 
   return (
