@@ -10,7 +10,7 @@ import { ethers , BigNumber} from "ethers";
 const tokenAddress = Token.address;
 const tokenAbi = Token.abi;
 const contractAbi = Shop.abi;
-const tokenAllowance = ethers.utils.parseEther("00000");
+const tokenAllowance = ethers.utils.parseEther("20000");
 
 const etherscanUrl = 'https://rinkeby.etherscan.io';
 const contractAddress = Shop.address;
@@ -88,7 +88,7 @@ export const Transactions = () => {
 
     return(
       <>
-        <Button variant="outlined" onClick={purchase("1")}> Purchase </Button>
+        <Button variant="outlined" onClick={buy("1")}> Purchase </Button>
       </>
     )
 }
