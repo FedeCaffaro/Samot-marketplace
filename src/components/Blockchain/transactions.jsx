@@ -65,7 +65,7 @@ export const Transactions = () => {
                 }
             } else{
                 const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-                const buyTxn = await contract.buyItems(1);
+                const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
                 return approveTxn , buyTxn ;
             }
         }
