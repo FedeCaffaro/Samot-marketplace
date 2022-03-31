@@ -51,25 +51,21 @@ export const Transactions = () => {
             }
     }
   
-    async function buy(){
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+    async function buy(totalCost){
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
             const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-            // console.log(checkAllowance() >= ethers.utils.parseEther("1000"));
-            // console.log(checkAllowance())
-            // console.log(ethers.utils.parseEther("1000"))
-            const allowanceAmount = await checkAllowance();
-            if (allowanceAmount >= ethers.utils.parseEther("1000")){
+            if (checkAllowance() >= ethers.utils.parseEther("1000") ){
                 try {
-                    const buyTxn = await contract.buyItems(ethers.utils.parseEther("1"));
+                    const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
                     return buyTxn;
                 } catch (error) {
                     return error;
                 }
             } else{
                 const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-                const buyTxn = await contract.buyItems(ethers.utils.parseEther("1"));
+                const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
                 return approveTxn , buyTxn ;
             }
         }
@@ -92,7 +88,7 @@ export const Transactions = () => {
 
     return(
       <>
-        <Button variant="outlined" onClick={buy}> Purchase </Button>
+        <Button variant="outlined" onClick={buy("1")}> Purchase </Button>
       </>
     )
 }
