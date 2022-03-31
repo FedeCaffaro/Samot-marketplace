@@ -10,7 +10,7 @@ import { ethers , BigNumber} from "ethers";
 const tokenAddress = Token.address;
 const tokenAbi = Token.abi;
 const contractAbi = Shop.abi;
-const tokenAllowance = ethers.utils.parseEther("20000");
+const tokenAllowance = ethers.utils.parseEther("00000");
 
 const etherscanUrl = 'https://rinkeby.etherscan.io';
 const contractAddress = Shop.address;
@@ -22,7 +22,6 @@ export const Transactions = () => {
     const [error, setError] = useState(false);
     const {
         active,
-        activate,
         account,
         library:provider,
       } = useWeb3React();
@@ -74,18 +73,22 @@ export const Transactions = () => {
 
 
     const purchase = async(purchaseTotal) =>{
-        setLoading(true);
-        const result = await buy(purchaseTotal)
-        if (result.error) {
-          setError(result.error)
+        if(active){
+            setLoading(true);
+            const result = await buy(purchaseTotal)
+            if (result.error) {
+            setError(result.error)
+            } else {
+            setTransactionUrl(`${etherscanUrl}/tx/${result.transactionHash}`)
+            }
         } else {
-          setTransactionUrl(`${etherscanUrl}/tx/${result.transactionHash}`)
+            console.log("Please install metamask");
         }
     }
 
     return(
       <>
-        <Button variant="outlined" onClick={buy("1")}>Buy </Button>
+        <Button variant="outlined" onClick={purchase("1")}> Purchase </Button>
       </>
     )
 }
