@@ -1,6 +1,8 @@
 import { useWeb3React } from '@web3-react/core';
-import { ethers } from 'ethers';
-import { contractAbi, contractAddress,tokenAbi,tokenAddress,tokenAllowance } from '../../Constants/constants';
+import Shop from "../../Constants/Shop.json"
+import Token from "../../Constants/Token.json"
+import { ethers , BigNumber} from "ethers";
+
 
 const { account, active, library:provider } = useWeb3React();
 

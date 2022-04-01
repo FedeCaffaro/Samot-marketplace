@@ -32,6 +32,7 @@ export const Transactions = () => {
         const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
         try{
             const approveTxn = await tokenContract.approve(contractAddress,BigNumber.from(tokenAllowance));
+            console.log(approveTxn);
             return approveTxn;
   
         } catch(error){
@@ -45,28 +46,41 @@ export const Transactions = () => {
             const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
             try {
                 const allowanceAmount = await tokenContract.allowance(account,contractAddress);
-                return allowanceAmount;
+                return allowanceAmount > ethers.utils.parseEther("1000");
             } catch(error){
                 console.log(error);
             }
     }
-  
-    async function buy(totalCost){
+    
+    async function buyOnly(){
         const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractAbi, signer);
+        try{
+            const buyTxn = await contract.buyItems(ethers.utils.parseEther("1"));
+            return  buyTxn;
+        }
+        catch (error) {
+            return error;
+        }
+    }
+
+    async function buy(){
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractAbi, signer);
             const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-            if (checkAllowance() >= ethers.utils.parseEther("1000") ){
+            const allowanceAmount = await checkAllowance();
+            if (allowanceAmount >= ethers.utils.parseEther("1000")){
                 try {
-                    const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
+                    const buyTxn = await contract.buyItems(ethers.utils.parseEther("1"));
                     return buyTxn;
                 } catch (error) {
                     return error;
                 }
             } else{
                 const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-                const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost));
-                return approveTxn , buyTxn ;
+                
             }
         }
 
@@ -88,7 +102,7 @@ export const Transactions = () => {
 
     return(
       <>
-        <Button variant="outlined" onClick={buy("1")}> Purchase </Button>
+        <Button variant="outlined" onClick={buy}> Purchase </Button>
       </>
     )
 }
