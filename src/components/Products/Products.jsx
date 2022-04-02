@@ -24,7 +24,6 @@ const Products = ({ products, onAddToCart }) => {
           width={350}
           alignSelf="center"
         />
-      {/* <div className={classes.toolbar} /> */}
       <Grid container justify="flex-start" spacing={3}>
         {products.map((product) => (
           <Grid key={product.id} item xs={6} sm={6} md={4} lg={3}>

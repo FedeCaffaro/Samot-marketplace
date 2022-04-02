@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
 import { ToastContainer } from 'react-toastify';
+import Body from './components/Footer/Body';
 
 
 const App = () => {
@@ -74,10 +75,10 @@ const App = () => {
 
   return (
     <Router>
-      <div style={{ display: 'flex', overflow: 'hidden' }}>
+      <div style={{ overflow: 'hidden' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Box sx={{ width: 'auto'}}>
+        <Body sx={{ width: 'auto',height:'90vh'}} >
         <Switch>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
@@ -91,19 +92,9 @@ const App = () => {
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
         </Switch>
-          <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          />
+          <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+        </Body>
         <Footer/>
-        </Box>      
       </div>
     </Router>
   );
