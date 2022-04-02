@@ -3,6 +3,8 @@ import { CssBaseline, Box } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
+import { ToastContainer } from 'react-toastify';
+
 
 const App = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -88,23 +90,20 @@ const App = () => {
           <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
-          {/* <Route exact path="/description">
-            <ThemeProvider theme={theme}>
-              <CountProvider>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <ViewImage products={products}/>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <ProductDescription products={products} onAddToCart={handleAddToCart} handleUpdateCartQty/>
-                  </Grid>
-                </Grid>
-              </CountProvider>
-            </ThemeProvider>
-          </Route> */}
         </Switch>
+          <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          />
         <Footer/>
-        </Box>
+        </Box>      
       </div>
     </Router>
   );

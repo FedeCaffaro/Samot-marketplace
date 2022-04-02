@@ -1,63 +1,73 @@
-import { useWeb3React } from '@web3-react/core';
+import React from 'react';
 import Shop from "../../Constants/Shop.json"
 import Token from "../../Constants/Token.json"
 import { ethers , BigNumber} from "ethers";
 
 
-const { account, active, library:provider } = useWeb3React();
+const ETHERSCAN_URL = 'https://rinkeby.etherscan.io';
+const tokenAddress = Token.address;
+const tokenAbi = Token.abi;
+const contractAbi = Shop.abi;
+const tokenAllowance = ethers.utils.parseEther("100000");
+const contractAddress = Shop.address;
 
-async function approveBuy(){
-    if (active) {
-        const signer = provider.getSigner();
-        const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-        try{
-            const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-            return {data: approveTxn, status:"ok"};
 
-        } catch(error){
-            return { data: error, status:"error"}
-            }
-    } else {
-        console.log("Please install Metamask");
-    }
+const getTransactionLink = (hash) => `${ETHERSCAN_URL}/tx/${hash}`;
+
+const successMessageWithLink = (text, hash) => (
+    <>
+      <span>{text}</span>
+      <a style={{ 'text-decoration': 'underline' }} href={getTransactionLink(hash)} target="_blank">
+      See transaction
+      </a>
+    </>
+  );
+
+export const approve = async() => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
+    const approveTxn = await tokenContract.approve(contractAddress,BigNumber.from(tokenAllowance));
+    return approveTxn;
+
 }
 
-async function checkAllowance(){
-    if (active){
-        const signer = provider.getSigner();
-        const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-        try {
-            const allowanceAmount = await tokenContract.allowance(signer,contractAddress);
-            return { data: allowanceAmount, status:"ok"};
-        } catch(error){
-            return { data: error, status:"error"}
-        }
-    } else {
-        console.log("Please install Metamask");
-    }
-}
 
-export const buy = async  (purchaseTotal) =>{
-    if (active) {
+export const buy = async (totalCost) =>{
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-        const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
-        if (checkAllowance() >= 1000 ){
-            try {
-                const buyTxn = await contract.buyItems(purchaseTotal);
-                return { data: buyTxn, status:"ok" };
-            } catch (error) {
-                return { data: error, status:"error" }
-            }
-        } else{
-            const approveTxn = await tokenContract.approve(contractAddress,tokenAllowance);
-            const buyTxn = await contract.buyItems(purchaseTotal);
-            return approveTxn , buyTxn ;
-        }
+                const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost))
+                console.log(buyTxn)
+                return buyTxn;  
 
-        } else {
-            console.log('Please install MetaMask');
-        }
     }
 
-module.exports = {buy, approveBuy,checkAllowance};
+export const checkAllowance =  async(_account) =>{
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const tokenContract = new ethers.Contract(tokenAddress,tokenAbi,signer);
+    try {
+        const allowanceAmount = await tokenContract.allowance(_account,contractAddress);
+        return allowanceAmount > ethers.utils.parseEther("10000");
+    } catch(error){
+        console.log(error);
+    }
+}
+
+
+export const buySuccessRender = ({ hash }) =>
+  successMessageWithLink("Purchase successful: " ,hash);
+
+export const buyErrorRender = (error) => {
+  return error.message.split(':')[1];
+};
+
+export const approveSuccessRender = ({ hash }) =>
+  successMessageWithLink('approveSuccess', hash);
+
+export const approveErrorRender = (error) => {
+  return error.message.split(':')[1];
+};
+
+
