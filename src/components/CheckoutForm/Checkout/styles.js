@@ -4,6 +4,9 @@ export default makeStyles((theme) => ({
   appBar: {
     position: 'relative',
   },
+  container: {
+    height: '70vh',
+  },
   toolbar: theme.mixins.toolbar,
   layout: {
     marginTop: '5%',

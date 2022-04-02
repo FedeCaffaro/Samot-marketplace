@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
+import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button, Grid } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 
 import { commerce } from '../../../lib/commerce';
@@ -79,6 +79,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
       <CssBaseline />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
+        <Grid className={classes.container}>
         <Paper className={classes.paper}>
           <Typography variant="h4" align="center">Checkout</Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
@@ -94,6 +95,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
           </div>) : ''}
           {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
+        </Grid>
       </main>
     </>
   );

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   // toolbar: theme.mixins.toolbar,
   container: {
-    height: '100vh',
+    height: `calc(100vh - 80px -  60px)`,
   },
   yellowPaper: {
     backgroundColor: "#000000",

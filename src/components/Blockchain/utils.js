@@ -53,19 +53,18 @@ export const checkAllowance =  async(_account) =>{
     }
 }
 
-
 export const buySuccessRender = ({ hash }) =>
   successMessageWithLink("Purchase successful: " ,hash);
 
 export const buyErrorRender = (error) => {
-  return error.message;
+  return (error.message.length > 100 ? "Error" : error.message);
 };
 
 export const approveSuccessRender = ({ hash }) =>
   successMessageWithLink('approveSuccess', hash);
 
 export const approveErrorRender = (error) => {
-  return error.message.split(':')[1];
+  return (error.message.length > 100 ? "Error" : error.message);
 };
 
 

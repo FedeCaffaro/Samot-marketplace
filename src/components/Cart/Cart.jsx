@@ -22,6 +22,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderCart = () => (
     <>
+    <Grid className={classes.container}>
       <Box
         pb={5}
         component="img"
@@ -50,6 +51,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
         </div>
       </div>
       </Paper>
+      </Grid>
     </>
   );
 
