@@ -4,9 +4,13 @@ export default makeStyles((theme) => ({
     footer: {
       backgroundColor: '#191919',
       width: '100vw',
-      position: "relative",
+      // position: "relative",
       overflow: "hidden",
       padding: "2em 0 ",
+      position: 'relative',
+          left: 0,
+          bottom: 0,
+          right: 0,
     },
     link: {
       fontSize: "1.25em",

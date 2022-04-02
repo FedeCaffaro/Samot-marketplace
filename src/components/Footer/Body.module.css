@@ -1,6 +1,0 @@
-.body{
-    flex-grow: 1;
-    background-color:black;
-    height: calc(100vh - 140px);
-    overflow: auto;
-}

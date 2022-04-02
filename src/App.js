@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
 import { ToastContainer } from 'react-toastify';
-import Body from './components/Footer/Body';
 
 
 const App = () => {
@@ -78,7 +77,6 @@ const App = () => {
       <div style={{ overflow: 'hidden' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
-        <Body sx={{ width: 'auto',height:'90vh'}} >
         <Switch>
           <Route exact path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
@@ -93,7 +91,6 @@ const App = () => {
           </Route>
         </Switch>
           <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
-        </Body>
         <Footer/>
       </div>
     </Router>

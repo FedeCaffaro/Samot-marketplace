@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   // toolbar: theme.mixins.toolbar,
+  container: {
+    height: '100vh',
+  },
   yellowPaper: {
     backgroundColor: "#000000",
   },
@@ -62,5 +65,6 @@ export default makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'white',
     fontWeight: 'medium',
+    paddingTop: '100px',
   }
 }));

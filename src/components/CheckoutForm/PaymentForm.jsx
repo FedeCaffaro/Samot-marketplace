@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Divider } from '@material-ui/core';
-import {Transactions} from '../Blockchain/Transactions'
+import { Button, Divider } from '@material-ui/core';
+import { Transactions } from '../Blockchain/Transactions'
 import Review from './Review';
 
 const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {

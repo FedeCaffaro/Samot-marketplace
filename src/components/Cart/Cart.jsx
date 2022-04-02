@@ -11,9 +11,11 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   const handleEmptyCart = () => onEmptyCart();
 
   const renderEmptyCart = () => (
-    <Typography variant="subtitle1">You have no items in your shopping cart,
-      <Link className={classes.link} to="/">start adding some</Link>!
-    </Typography>
+    <Grid className = {classes.container}>
+      <Typography variant="subtitle1" className={classes.subtitle}>You have no items in your shopping cart,
+        <Link className={classes.link} to="/">start adding some</Link>!
+      </Typography>
+    </Grid>
   );
 
   if (!cart.line_items) return 'Loading';
