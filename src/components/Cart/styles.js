@@ -58,7 +58,7 @@ export default makeStyles((theme) => ({
     color: 'black',
     fontWeight: 'medium',
   },
-  subtitle: {
+  regularText: {
     flexGrow: 1,
     alignItems: 'center',
     display: 'flex',
@@ -66,5 +66,13 @@ export default makeStyles((theme) => ({
     color: 'white',
     fontWeight: 'medium',
     paddingTop: '100px',
+  },
+  subtitle: {
+    flexGrow: 1,
+    alignItems: 'center',
+    display: 'flex',
+    textDecoration: 'none',
+    color: 'white',
+    fontWeight: 'medium',
   }
 }));
