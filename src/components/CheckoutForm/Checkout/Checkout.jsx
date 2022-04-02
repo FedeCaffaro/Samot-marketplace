@@ -69,8 +69,10 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   }
 
   const Form = () => (activeStep === 0
-    ? <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
-    : <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />);
+    ? (
+        <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
+      ) : (
+     <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />));
 
   return (
     <>
@@ -86,6 +88,10 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
               </Step>
             ))}
           </Stepper>
+          {!checkoutToken ? (
+          <div className={classes.spinner}>
+                  <CircularProgress />
+          </div>) : ''}
           {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
         </Paper>
       </main>
