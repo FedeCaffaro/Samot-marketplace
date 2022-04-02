@@ -1,7 +1,7 @@
 import React from 'react';
 import Shop from "../../Constants/Shop.json"
 import Token from "../../Constants/Token.json"
-import { ethers , BigNumber} from "ethers";
+import { ethers , BigNumber, errors} from "ethers";
 
 
 const ETHERSCAN_URL = 'https://rinkeby.etherscan.io';
@@ -37,10 +37,8 @@ export const buy = async (totalCost) =>{
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(contractAddress, contractAbi, signer);
-                const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost))
-                console.log(buyTxn)
-                return buyTxn;  
-
+        const buyTxn = await contract.buyItems(ethers.utils.parseEther(totalCost))
+        return buyTxn;
     }
 
 export const checkAllowance =  async(_account) =>{
@@ -60,7 +58,7 @@ export const buySuccessRender = ({ hash }) =>
   successMessageWithLink("Purchase successful: " ,hash);
 
 export const buyErrorRender = (error) => {
-  return error.message.split(':')[1];
+  return error.message;
 };
 
 export const approveSuccessRender = ({ hash }) =>

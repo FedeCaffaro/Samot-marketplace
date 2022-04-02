@@ -8,9 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 
 
-export const Transactions = ({ checkoutToken, shippingData, purchaseTotal }) => {
+export const Transactions = ({ checkoutToken, shippingData }) => {
   
-  const cost = "1";
+  const cost = checkoutToken.live.subtotal.raw.toString();
 
   
   const {
@@ -40,6 +40,7 @@ export const Transactions = ({ checkoutToken, shippingData, purchaseTotal }) => 
       handleEmailSend();
       return aFunction(result?.data);
     };
+    
   const renderAndGetError =
     (aFunction, callBefore = () => {}) =>
     (result) => {
@@ -122,9 +123,6 @@ export const Transactions = ({ checkoutToken, shippingData, purchaseTotal }) => 
           });
   }
 
-  // const endPurchase = async (cost) => {
-  //     return purchase(cost).then(handleEmailSend);
-  // }
     return(
       <>
         {active? (
