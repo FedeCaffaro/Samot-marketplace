@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { InputLabel, Select, MenuItem, Button, Grid, Typography, CircularProgress } from '@material-ui/core';
+import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ import FormInput from './CustomTextField';
 import useStyles from './Checkout/styles';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
 
 const AddressForm = ({ checkoutToken, test }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
