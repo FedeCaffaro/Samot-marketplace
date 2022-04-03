@@ -8,7 +8,6 @@ import FormInput from './CustomTextField';
 import useStyles from './Checkout/styles';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
 
 const AddressForm = ({ checkoutToken, test }) => {
   const [shippingCountries, setShippingCountries] = useState([]);
