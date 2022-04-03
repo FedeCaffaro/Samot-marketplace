@@ -14,7 +14,7 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('xs')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      
+      paddingTop: '20px', 
     },
   },
   arrivalsBanner: {

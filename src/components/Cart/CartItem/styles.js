@@ -8,6 +8,12 @@ export default makeStyles(() => ({
   media: {
     height: 200,
   },
+  checkoutButton: {
+    minWidth: '70px',
+    alignItems: 'center',
+    backgroundColor: "#ffc107",
+    borderRadius: 7,
+  },
   cardContent: {
     display: 'flex',
     justifyContent: 'space-between',

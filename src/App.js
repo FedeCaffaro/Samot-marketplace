@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, Box } from '@material-ui/core';
+import { CssBaseline, createTheme, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
@@ -12,6 +12,12 @@ const App = () => {
   const [cart, setCart] = useState({});
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+
+  const samot = createTheme({
+    typography: {
+      fontFamily: ["Oswald", "sans-serif"].join(","),
+    },
+  });
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
@@ -75,6 +81,7 @@ const App = () => {
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   return (
+    <ThemeProvider theme={samot}>
     <Router>
       <div style={{ overflow: 'hidden' }}>
         <CssBaseline />
@@ -89,13 +96,16 @@ const App = () => {
             </div>
           </Route>
           <Route path="/checkout" exact>
+            <div style={{backgroundColor: 'black'}}>
             <Checkout cart={cart} order={order} handleEmptyCart={handleEmptyCart} error={errorMessage} />
+            </div>
           </Route>
         </Switch>
           <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
         <Footer/>
       </div>
     </Router>
+    </ThemeProvider>
   );
 };
 

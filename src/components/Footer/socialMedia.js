@@ -6,7 +6,6 @@
 export const socialMedia = {
     instagram: "https://www.instagram.com/samot.club/",
     discord: "https://discord.gg/samot",
-    github: "https://github.com/SatoruAkiyama/nextjs-and-material-ui-template-with-header-and-footer",
     twitter: "https://twitter.com/samotclub",
     homepage: "https://samot.club",
   };

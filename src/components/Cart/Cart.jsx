@@ -12,7 +12,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderEmptyCart = () => (
     <Grid className = {classes.container}>
-      <Typography variant="subtitle1" className={classes.regularText}>You have no items in your shopping cart,
+      <Typography variant="h4" className={classes.regularText}>You have no items in your shopping cart, 
         <Link className={classes.link} to="/">start adding some</Link>!
       </Typography>
     </Grid>
