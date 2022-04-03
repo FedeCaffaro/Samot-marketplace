@@ -48,14 +48,4 @@ jobs:
           args: --acl public-read --follow-symlinks --delete --exclude '.git/*' --exclude '.github/*'
         if: endsWith(github.ref, '/main')
         run: |
-          npm install -g serverless@2.72.2
-          cd nextjs && aws s3 sync s3://samot-nextjs-deployment/dev .serverless --delete
-          serverless --env=dev
-          aws s3 sync .serverless s3://samot-nextjs-deployment/dev --delete
-
-          cd ../website && aws s3 sync s3://samot-nextjs-deployment/dev/website .serverless --delete
-          serverless --env=dev
-          aws s3 sync .serverless s3://samot-nextjs-deployment/dev/website --delete
-
-          npm install serverless -g
-          cd ../serverless && npm install && serverless deploy --stage dev
+          
