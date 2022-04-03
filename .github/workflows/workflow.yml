@@ -29,11 +29,11 @@ jobs:
 
       # Install project dependencies
       - name: Install Dependencies
-        run: yarn
+        run: npm install
 
       # Build the app
       - name: Build
-        run: yarn build
+        run: npm run build
 
       #Deploy to prod
       - name : Deploy Prod
