@@ -25,6 +25,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
     <Grid className={classes.container}>
       <Box
         pb={5}
+        pt={2}
         component="img"
         alt="Your Cart"
         src={yourcart}

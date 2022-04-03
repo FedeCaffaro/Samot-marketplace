@@ -24,6 +24,7 @@ const App = () => {
   };
 
   const handleAddToCart = async (productId, quantity) => {
+
     const item = await commerce.cart.add(productId, quantity);
 
     setCart(item.cart);
@@ -54,7 +55,11 @@ const App = () => {
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    const manualOptions = commerce.checkout.gateways.manual;
+
+    console.log(manualOptions);
     try {
+
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
 
       setOrder(incomingOrder);

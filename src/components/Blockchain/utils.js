@@ -11,7 +11,6 @@ const contractAbi = Shop.abi;
 const tokenAllowance = ethers.utils.parseEther("100000");
 const contractAddress = Shop.address;
 
-
 const getTransactionLink = (hash) => `${ETHERSCAN_URL}/tx/${hash}`;
 
 const successMessageWithLink = (text, hash) => (

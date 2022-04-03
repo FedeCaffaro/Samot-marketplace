@@ -1,9 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  // toolbar: theme.mixins.toolbar,
+  toolbar: theme.mixins.toolbar,
   container: {
-    height: `calc(100vh - 80px -  60px)`,
+    [theme.breakpoints.up('xl')]: {
+      height: `calc(100vh - 80px -  60px)`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: `calc(100vh - 70px)`,
+    },
   },
   yellowPaper: {
     backgroundColor: "#000000",
@@ -32,7 +37,8 @@ export default makeStyles((theme) => ({
   },
   cardDetails: {
     display: 'flex',
-    marginTop: '10%',
+    //marginTop: '1%',
+    paddingTop: '30px',
     width: '100%',
     justifyContent: 'space-between',
     color: 'white',

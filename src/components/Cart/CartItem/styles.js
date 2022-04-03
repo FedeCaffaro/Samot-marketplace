@@ -2,11 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   cartItem: {
-    paddingTop: '50px',
+    paddingTop: '30px',
     backgroundColor: '#191919',
   },
   media: {
-    height: 300,
+    height: 200,
   },
   cardContent: {
     display: 'flex',

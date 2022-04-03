@@ -5,7 +5,12 @@ export default makeStyles((theme) => ({
     position: 'relative',
   },
   container: {
-    height: '70vh',
+    [theme.breakpoints.up('xl')]: {
+      height: `calc(100vh - 80px -  60px)`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      height: `calc(100vh - 30px)`,
+    },
   },
   toolbar: theme.mixins.toolbar,
   layout: {

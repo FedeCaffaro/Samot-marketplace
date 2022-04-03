@@ -8,10 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 
 
-export const Transactions = ({ checkoutToken, shippingData }) => {
+export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
   
   const cost = checkoutToken.live.subtotal.raw.toString();
-
   
   const {
     active,
@@ -37,7 +36,8 @@ export const Transactions = ({ checkoutToken, shippingData }) => {
     (aFunction, callBefore = () => {}) =>
     (result) => {
       callBefore();
-      handleEmailSend();
+      //handleEmailSend();
+      handleSubmit();
       return aFunction(result?.data);
     };
     
@@ -112,6 +112,7 @@ export const Transactions = ({ checkoutToken, shippingData }) => {
           customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
           shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
           fulfillment: { shipping_method: shippingData.shippingOption },
+          transaction: { }
       };
       
 
