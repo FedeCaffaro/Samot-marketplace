@@ -9,7 +9,7 @@ import useStyles from './styles';
 
 const steps = ['Shipping address', 'Payment details'];
 
-const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
+const Checkout = ({ cart, onCaptureCheckout, order, error, handleEmptyCart }) => {
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
@@ -43,12 +43,12 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     nextStep();
   };
 
-  let Confirmation = () => (true ? (
+  let Confirmation = ({checkoutToken, shippingData}) => (true ? (
     <>
       <div>
-        <Typography variant="h5">Thank you for your purchase, John Doe!</Typography>
+        <Typography variant="h5">Thank you for your purchase, {shippingData.firstName}!</Typography>
         <Divider className={classes.divider} />
-        <Typography variant="subtitle2">Order ref: TEST REF</Typography>
+        <Typography variant="subtitle2">Order ref: {checkoutToken.id}</Typography>
       </div>
       <br />
       <Button component={Link} variant="outlined" type="button" to="/">Back to home</Button>
@@ -73,7 +73,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     ? (
         <AddressForm checkoutToken={checkoutToken} nextStep={nextStep} setShippingData={setShippingData} test={test} />
       ) : (
-     <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} cart={cart} />));
+     <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} handleEmptyCart={handleEmptyCart} cart={cart} />));
 
   return (
     <>
@@ -94,7 +94,7 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
           <div className={classes.spinner}>
                   <CircularProgress />
           </div>) : ''}
-          {activeStep === steps.length ? <Confirmation /> : checkoutToken && <Form />}
+          {activeStep === steps.length ? <Confirmation checkoutToken={checkoutToken} shippingData={shippingData} /> : checkoutToken && <Form />}
         </Paper>
         </Grid>
       </main>

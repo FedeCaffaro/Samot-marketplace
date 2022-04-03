@@ -55,9 +55,6 @@ const App = () => {
   };
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-    const manualOptions = commerce.checkout.gateways.manual;
-
-    console.log(manualOptions);
     try {
 
       const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
@@ -92,7 +89,7 @@ const App = () => {
             </div>
           </Route>
           <Route path="/checkout" exact>
-            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
+            <Checkout cart={cart} order={order} handleEmptyCart={handleEmptyCart} error={errorMessage} />
           </Route>
         </Switch>
           <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>

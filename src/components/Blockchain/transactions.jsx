@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import emailjs from '@emailjs/browser';
 
 
-export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
+export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handleEmptyCart }) => {
   
   const cost = checkoutToken.live.subtotal.raw.toString();
   
@@ -36,8 +36,11 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
     (aFunction, callBefore = () => {}) =>
     (result) => {
       callBefore();
-      //handleEmailSend();
+      createTemplateParams();
+      handleEmailSend(createTemplateParams());
+      handleEmptyCart();
       handleSubmit();
+
       return aFunction(result?.data);
     };
     
@@ -52,7 +55,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
           toast.promise(approve(), {
             pending: 'Approving...',
             success: {render: renderAndGetData(approveSuccessRender)},
-              error: { render: renderAndGetData(approveErrorRender) }
+              error: { render: renderAndGetError(approveErrorRender) }
           });
         } else {
             console.log("Please install metamask");
@@ -71,7 +74,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
         }
     }
 
-  const handleEmailSend = () => {
+  const createTemplateParams = () => {
       const line_items = checkoutToken.live.line_items;
 
       const splitLineItems = () => {
@@ -103,27 +106,29 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
       const product_quantitys = splitLineItems2(line_items);
       const product_prices = splitLineItems3(line_items);
 
-      var templateParams = {
-          id: checkoutToken.id,
-          product_names: product_names,
-          product_quantitys: product_quantitys,
-          product_prices: product_prices,
-          cart_total: checkoutToken.live.subtotal.formatted,
-          customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
-          shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
-          fulfillment: { shipping_method: shippingData.shippingOption },
-          transaction: { }
+      const templateParams = {
+        id: checkoutToken.id,
+        product_names: product_names,
+        product_quantitys: product_quantitys,
+        product_prices: product_prices,
+        cart_total: checkoutToken.live.subtotal.formatted,
+        customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
+        shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
+        fulfillment: { shipping_method: shippingData.shippingOption },
+        transaction: { }
       };
-      
 
-      emailjs.send('service_cm6fk1o','template_d11jias', templateParams, '0-hzlTXEVchQXpt3o')
-          .then(function(response) {
-          console.log('SUCCESS!', response.status, response.text);
-          }, function(err) {
-          console.log('FAILED...', err);
-          });
+      return templateParams
   }
 
+  const handleEmailSend = (templateParams) => {
+    emailjs.send('service_cm6fk1o','template_d11jias', templateParams, '0-hzlTXEVchQXpt3o')
+    .then(function(response) {
+    console.log('SUCCESS!', response.status, response.text);
+    }, function(err) {
+    console.log('FAILED...', err);
+    });
+  }
     return(
       <>
         {active? (
@@ -138,7 +143,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit }) => {
             <div>
             <p className="font-bold">
               {" "}
-              <b>You must be connected to MetaMask to buy.{" "}</b>
+              <b>You must be connected to MetaMask to purchase.{" "}</b>
             </p>
           </div>
           )

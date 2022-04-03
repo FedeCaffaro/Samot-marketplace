@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Divider } from '@material-ui/core';
-import { Transactions } from '../Blockchain/Transactions'
+import { Transactions } from '../Blockchain/transactions'
 import Review from './Review';
 
-const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData }) => {
+const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, handleEmptyCart }) => {
   
   // const sanitizedLineItems = (lineItems) => {
   //   return lineItems.reduce((data, lineItem) => {
@@ -76,7 +76,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData }) => {
             <br /> <br />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button variant="outlined" onClick={backStep}>Back</Button>
-                <Transactions checkoutToken={checkoutToken} shippingData={shippingData} handleSubmit={handleSubmit} />
+                <Transactions checkoutToken={checkoutToken} shippingData={shippingData} handleSubmit={handleSubmit} handleEmptyCart={handleEmptyCart} />
             </div>
           </form>
     </>
