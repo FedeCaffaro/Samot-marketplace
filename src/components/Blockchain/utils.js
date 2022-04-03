@@ -1,7 +1,7 @@
 import React from 'react';
-import Shop from "../../Constants/Shop.json"
-import Token from "../../Constants/Token.json"
-import { ethers , BigNumber, errors} from "ethers";
+import Shop from "./Shop.json"
+import Token from "./Token.json"
+import { ethers , BigNumber} from "ethers";
 
 
 const ETHERSCAN_URL = 'https://rinkeby.etherscan.io';
