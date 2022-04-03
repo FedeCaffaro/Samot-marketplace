@@ -75,7 +75,7 @@ const App = () => {
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   return (
-    <Router>
+    <Router basename={process.env.REACT_APP_PUBLIC_URL}>
       <div style={{ overflow: 'hidden' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
@@ -83,12 +83,12 @@ const App = () => {
           <Route path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
-          <Route  path="/cart">
+          <Route exact path="/cart">
             <div style={{backgroundColor: 'black'}}>
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
             </div>
           </Route>
-          <Route path="/checkout" >
+          <Route path="/checkout" exact>
             <Checkout cart={cart} order={order} handleEmptyCart={handleEmptyCart} error={errorMessage} />
           </Route>
         </Switch>
