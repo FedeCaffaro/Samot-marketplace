@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, Box } from '@material-ui/core';
+import { CssBaseline } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
@@ -80,15 +80,15 @@ const App = () => {
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
-          <Route exact path="/">
+          <Route path="/">
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
-          <Route exact path="/cart">
+          <Route  path="/cart">
             <div style={{backgroundColor: 'black'}}>
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
             </div>
           </Route>
-          <Route path="/checkout" exact>
+          <Route path="/checkout" >
             <Checkout cart={cart} order={order} handleEmptyCart={handleEmptyCart} error={errorMessage} />
           </Route>
         </Switch>
