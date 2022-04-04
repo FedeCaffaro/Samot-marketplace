@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardActionArea, Card, CardMedia, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
+import { CardActionArea, Card, CardMedia, Box, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
 import useStyles from './styles';
