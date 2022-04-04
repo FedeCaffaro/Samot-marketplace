@@ -8,13 +8,17 @@ const Review = ({ checkoutToken }) => (
       {checkoutToken.live.line_items.map((product) => (
         <ListItem style={{ padding: '10px 0' }} key={product.name}>
           <ListItemText primary={product.name} secondary={`Quantity: ${product.quantity}`} />
-          <Typography variant="body2">{product.line_total.formatted_with_symbol}</Typography>
+          <Typography variant="body2">{product.line_total.raw} $SAMOT</Typography>
         </ListItem>
       ))}
+        <ListItem style={{ padding: '10px 0' }}>
+          <ListItemText primary={checkoutToken.live.shipping.available_options[0].description} />
+          <Typography variant="body2">{checkoutToken.live.shipping.available_options[0].price.raw} $SAMOT</Typography>
+        </ListItem>
       <ListItem style={{ padding: '10px 0' }}>
         <ListItemText primary="Total" />
         <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
-          {checkoutToken.live.subtotal.formatted_with_symbol}
+          {checkoutToken.live.subtotal.raw + checkoutToken.live.shipping.available_options[0].price.raw} $SAMOT
         </Typography>
       </ListItem>
     </List>

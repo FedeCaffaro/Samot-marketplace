@@ -12,8 +12,9 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderEmptyCart = () => (
     <Grid className = {classes.container}>
-      <Typography variant="subtitle1" className={classes.regularText}>You have no items in your shopping cart,
-        <Link className={classes.link} to="/">start adding some</Link>!
+      <Typography variant="h4" className={classes.regularText}>You still haven't picked up any merch,
+      <Typography variant="title" noWrap>&nbsp;</Typography>
+      <Link className={classes.link} to="/">start adding some</Link>!
       </Typography>
     </Grid>
   );
@@ -23,19 +24,11 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   const renderCart = () => (
     <>
     <Grid className={classes.container}>
-      <Box
-        pb={5}
-        pt={2}
-        component="img"
-        alt="Your Cart"
-        src={yourcart}
-        width={200}
-        alignSelf="center"
-      />
+    <Typography className={classes.samotSubtitle}>YOUR CART</Typography>
       <Paper className={classes.yellowPaper}>
       <Grid container spacing={3}>
         {cart.line_items.map((lineItem) => (
-          <Grid item xs={12} sm={3} key={lineItem.id}>
+          <Grid item xs={12} sm={6} md={3} key={lineItem.id}>
             <CartItem item={lineItem} onUpdateCartQty={onUpdateCartQty} onRemoveFromCart={onRemoveFromCart} />
           </Grid>
         ))}

@@ -14,11 +14,20 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('xs')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      
+      paddingTop: '20px', 
     },
   },
   arrivalsBanner: {
     alignItems: 'center',
+  },
+  samotSubtitle: {
+    color: "#ffc107",
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "3em",
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: "4em",
+    },
   },
   root: {
     flexGrow: 1,

@@ -19,13 +19,13 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart}) => {
           <Typography variant="h5">{item.line_total.formatted} $SAMOT</Typography>
         </Grid>
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cartActions}>
         <div className={classes.buttons}>
           <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}><Typography className={classes.buttons}>-</Typography></Button>
-          <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+            <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
           <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}><Typography className={classes.buttons}>+</Typography></Button>
         </div>
-        <Button variant="contained" type="button" color="secondary" onClick={() => handleRemoveFromCart(item.id)}>Remove</Button>
+        <Button variant="contained" type="button" className={classes.checkoutButton} onClick={() => handleRemoveFromCart(item.id)}>Remove</Button>
       </CardActions>
     </Card>
   );

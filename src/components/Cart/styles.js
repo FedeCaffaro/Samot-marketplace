@@ -32,8 +32,18 @@ export default makeStyles((theme) => ({
     backgroundColor: "#ffc107",
     borderRadius: 7,
   },
+  samotSubtitle: {
+    color: "#ffc107",
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "3em",
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: "4em",
+    },
+  },
   link: {
     textDecoration: 'none',
+    color: '#ffc107',
   },
   cardDetails: {
     display: 'flex',
@@ -76,9 +86,9 @@ export default makeStyles((theme) => ({
   subtitle: {
     flexGrow: 1,
     alignItems: 'center',
-    display: 'flex',
     textDecoration: 'none',
     color: 'white',
     fontWeight: 'medium',
+    justifyContent: 'space-between',
   }
 }));

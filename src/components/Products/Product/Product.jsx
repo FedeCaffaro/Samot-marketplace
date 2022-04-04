@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardActionArea, Card, CardMedia, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
+import { CardActionArea, Card, CardMedia, Box, CardContent, CardActions, Typography, IconButton, Grid } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons';
 
 import useStyles from './styles';
@@ -15,10 +15,10 @@ const Product = ({ product, onAddToCart }) => {
       <CardMedia className={classes.media} image={product.image.url} title={product.name} />
       <CardContent>
         <div className={classes.cardContent}>
-          <Typography variant="h5" component="h2">{product.name}</Typography>
+          <Typography className={classes.productTitle} variant="h5" component="h2">{product.name}</Typography>
           {/* <Typography dangerouslySetInnerHTML={{ __html: product.description }} variant="body2" color="textSecondary" component="p" /> */}
           <Grid>
-          <Typography variant="h6" component="h2">{product.price.formatted} $SAMOT</Typography>
+          <Typography className={classes.productPrice} variant="h6" component="h2">{product.price.formatted} $SAMOT</Typography>
           </Grid>
         </div>
       </CardContent>
