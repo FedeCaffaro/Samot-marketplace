@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Box, Typography } from '@material-ui/core';
-import banner from '../../assets/banner.jpg';
+import banner from '../../assets/banner.png';
 import Product from './Product/Product';
 import useStyles from './styles';
 
