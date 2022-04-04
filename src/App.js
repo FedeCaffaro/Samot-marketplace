@@ -82,7 +82,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={samot}>
-    <Router basename="index.html">
+    <Router>
       <div style={{ overflow: 'hidden' }}>
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
