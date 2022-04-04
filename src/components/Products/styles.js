@@ -20,6 +20,15 @@ export default makeStyles((theme) => ({
   arrivalsBanner: {
     alignItems: 'center',
   },
+  samotSubtitle: {
+    color: "#ffc107",
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "3em",
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: "4em",
+    },
+  },
   root: {
     flexGrow: 1,
   },

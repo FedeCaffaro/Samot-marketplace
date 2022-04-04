@@ -19,7 +19,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart}) => {
           <Typography variant="h5">{item.line_total.formatted} $SAMOT</Typography>
         </Grid>
       </CardContent>
-      <CardActions className={classes.cardActions}>
+      <CardActions className={classes.cartActions}>
         <div className={classes.buttons}>
           <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}><Typography className={classes.buttons}>-</Typography></Button>
             <Typography>&nbsp;{item.quantity}&nbsp;</Typography>

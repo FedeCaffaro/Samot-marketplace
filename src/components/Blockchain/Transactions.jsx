@@ -10,7 +10,9 @@ import emailjs from '@emailjs/browser';
 
 export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handleEmptyCart }) => {
   
-  const cost = checkoutToken.live.subtotal.raw.toString();
+  const productCost = checkoutToken.live.subtotal.raw;
+  const shippingCost = checkoutToken.live.shipping.available_options[0].price.raw;
+  const cost = (productCost + shippingCost).toString();
   
   const {
     active,

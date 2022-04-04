@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   root: {
     // maxWidth: 345, original width style
     maxWidth: '100%',
@@ -12,6 +12,22 @@ export default makeStyles(() => ({
     transition: '0.2s',
     '&:hover': {
       transform: 'scale(1.02)',
+    },
+  },
+  productTitle: {
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "1.5em",
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: "2em",
+    },
+  },
+  productPrice: {
+    [theme.breakpoints.up('xs')]: {
+      fontSize: "1.25em",
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: "1.75em",
     },
   },
   media: {
