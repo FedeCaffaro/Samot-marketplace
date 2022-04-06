@@ -13,6 +13,8 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
   const productCost = checkoutToken.live.subtotal.raw;
   const shippingCost = checkoutToken.live.shipping.available_options[0].price.raw;
   const cost = (productCost + shippingCost).toString();
+  const [isApproved, setIsApproved] = useState(false);
+
   
   const {
     active,
@@ -30,9 +32,8 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
     if (active) {
       checkApprove();
     }
-  }, [account]);
+  }, [isApproved]);
 
-  const [isApproved, setIsApproved] = useState(false);
 
  const renderAndGetData =
     (aFunction, callBefore = () => {}) =>
@@ -43,6 +44,16 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
       handleEmptyCart();
       handleSubmit();
 
+      return aFunction(result?.data);
+    };
+
+  const renderAndGetDataApproval =
+    (aFunction, callBefore = () => {}) =>
+    (result) => {
+      setIsApproved(true);
+      callBefore();
+      checkApprove();
+      setIsApproved(true);
       return aFunction(result?.data);
     };
     
@@ -56,8 +67,8 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
       if(active){
           toast.promise(approve(), {
             pending: 'Approving...',
-            success: {render: renderAndGetData(approveSuccessRender)},
-              error: { render: renderAndGetError(approveErrorRender) }
+            success: {render: renderAndGetDataApproval(approveSuccessRender,checkApprove)},
+              error: {render: renderAndGetError(approveErrorRender,checkApprove)}
           });
         } else {
             console.log("Please install metamask");
@@ -68,7 +79,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
         if(active){
           toast.promise(buy(totalCost), {
             pending: 'Buying...',
-            success: {render:  renderAndGetData(buySuccessRender)},
+            success: {render: renderAndGetData(buySuccessRender)},
             error: {render: renderAndGetError(buyErrorRender)},
             });
         } else {
