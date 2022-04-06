@@ -16,7 +16,7 @@ const getTransactionLink = (hash) => `${ETHERSCAN_URL}/tx/${hash}`;
 const successMessageWithLink = (text, hash) => (
     <>
       <span>{text}</span>
-      <a style={{ 'text-decoration': 'underline' }} href={getTransactionLink(hash)} target="_blank">
+      <a style={{ 'text-decoration': 'underline' }} href={getTransactionLink(hash) } target="_blank" rel="noopener noreferrer">
       See transaction
       </a>
     </>
@@ -60,7 +60,7 @@ export const buyErrorRender = (error) => {
 };
 
 export const approveSuccessRender = ({ hash }) =>
-  successMessageWithLink('approveSuccess', hash);
+  successMessageWithLink('Approval successful: ', hash);
 
 export const approveErrorRender = (error) => {
   return (error.message.length > 100 ? "Error" : error.message);
