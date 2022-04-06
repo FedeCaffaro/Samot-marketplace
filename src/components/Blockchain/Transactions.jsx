@@ -50,10 +50,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
   const renderAndGetDataApproval =
     (aFunction, callBefore = () => {}) =>
     (result) => {
-      setIsApproved(true);
       callBefore();
-      checkApprove();
-      setIsApproved(true);
       return aFunction(result?.data);
     };
     
