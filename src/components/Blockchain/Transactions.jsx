@@ -145,7 +145,10 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
           <div>
           {isApproved? 
           (<Button variant="outlined" onClick={() =>purchase(cost)}> Purchase </Button>) :
-          (<Button variant="outlined" onClick={() => approveTransfer()}> Approve </Button>)
+          <p className="font-bold">
+          {" "}
+          <b>You must approve the contract to purchase. Go back to Cart.{" "}</b>
+          </p>          
           } 
           </div>
           ) :

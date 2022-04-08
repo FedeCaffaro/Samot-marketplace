@@ -101,7 +101,7 @@ const App = () => {
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
         </Switch>
-          <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+        <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
         <Footer/>
       </div>
     </Router>
