@@ -87,21 +87,21 @@ const App = () => {
         <CssBaseline />
         <Navbar totalItems={cart.total_items} handleDrawerToggle={handleDrawerToggle} />
         <Switch>
-          <Route path="/cart" exact>
+          <Route path="/cart" >
             <div style={{backgroundColor: 'black'}}>
             <Cart cart={cart} onUpdateCartQty={handleUpdateCartQty} onRemoveFromCart={handleRemoveFromCart} onEmptyCart={handleEmptyCart} />
             </div>
           </Route>
-          <Route path="/checkout" exact>
+          <Route path="/checkout" >
             <div style={{backgroundColor: 'black'}}>
             <Checkout cart={cart} order={order} handleEmptyCart={handleEmptyCart} error={errorMessage} />
             </div>
           </Route>
-          <Route path="/" exact>
+          <Route path="/" >
             <Products products={products} onAddToCart={handleAddToCart} handleUpdateCartQty />
           </Route>
         </Switch>
-          <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+        <ToastContainer position="bottom-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
         <Footer/>
       </div>
     </Router>
