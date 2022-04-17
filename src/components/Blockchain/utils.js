@@ -4,7 +4,7 @@ import Token from "./Token.json"
 import { ethers , BigNumber} from "ethers";
 
 
-const ETHERSCAN_URL = 'https://rinkeby.etherscan.io';
+const ETHERSCAN_URL = 'https://etherscan.io';
 const tokenAddress = Token.address;
 const tokenAbi = Token.abi;
 const contractAbi = Shop.abi;
