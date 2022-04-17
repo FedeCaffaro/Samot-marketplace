@@ -94,7 +94,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
             <Typography className={classes.title}>Checkout</Typography>
           </Button>):
           (<Button className={classes.disconnectButton} variant="outlined" type="button" onClick={() =>approveTransfer()}> 
-          <Typography variant="subtitle2" className={classes.subtitle}>Approve contract before checkout</Typography>
+          <Typography variant="subtitle2" className={classes.subtitle}>Approve before checkout</Typography>
           </Button>)
         }
         </div>
