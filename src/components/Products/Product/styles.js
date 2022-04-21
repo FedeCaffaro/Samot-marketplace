@@ -72,6 +72,7 @@ export default makeStyles((theme) => ({
   cardContent: {
     //display: 'flex',
     //justifyContent: 'space-between',
+    padding: '0px',
     textAlign: 'center',
     backgroundColor: '#191919',
     color: 'white',

@@ -26,6 +26,12 @@ export default makeStyles((theme) => ({
     borderWidth: '2px solid',
     borderColor: '#ffc107',
   },
+  
+  cartButtons: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+
   checkoutButton: {
     minWidth: '150px',
     alignItems: 'center',

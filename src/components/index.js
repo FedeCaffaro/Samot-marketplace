@@ -3,4 +3,5 @@ export { default as Products } from './Products/Products';
 export { default as Cart } from './Cart/Cart';
 export { default as Checkout } from './CheckoutForm/Checkout/Checkout';
 export { default as Footer } from './Footer/Footer';
+export { default as Carousel } from './Products/Product/Carousel/Carousel';
 

@@ -85,7 +85,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
       </Grid>
       <div className={classes.cardDetails}>
         <Typography variant="h4" gutterBottom >Subtotal: {cart.subtotal.formatted} $SAMOT</Typography>
-        <div>
+        <div className={classes.cartButtons}>
           <Button className={classes.emptyButton} size="large" type="button" variant="outlined" onClick={handleEmptyCart}>
             <Typography className={classes.subtitle}>Empty cart</Typography>
           </Button>
