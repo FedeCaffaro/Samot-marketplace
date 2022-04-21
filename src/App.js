@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, createTheme, ThemeProvider } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Navbar, Products, Cart, Checkout, Footer, Carousel } from './components';
+import { Navbar, Products, Cart, Checkout, Footer } from './components';
 import { commerce } from './lib/commerce';
 import { ToastContainer } from 'react-toastify';
 
