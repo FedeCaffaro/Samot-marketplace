@@ -62,9 +62,9 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   const renderEmptyCart = () => (
     <Grid className = {classes.container}>
-      <Typography variant="h4" className={classes.regularText}>You still haven't picked up any merch,
+      <Typography variant="h4" className={classes.regularText}>You still haven't picked up any merch.
       <Typography variant="title" noWrap>&nbsp;</Typography>
-      <Link className={classes.link} to="/">start adding some</Link>!
+      <Link className={classes.link} to="/">Start adding some!</Link>
       </Typography>
     </Grid>
   );

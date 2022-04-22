@@ -6,8 +6,8 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.up('xl')]: {
       height: `calc(100vh - 80px -  60px)`,
     },
-    [theme.breakpoints.up('lg')]: {
-      height: `calc(100vh - 70px)`,
+    [theme.breakpoints.up('xs')]: {
+      height: `calc(100vh - 120px)`,
     },
   },
   yellowPaper: {
