@@ -122,7 +122,7 @@ export const Transactions = ({ checkoutToken, shippingData, handleSubmit, handle
         product_quantitys: product_quantitys,
         product_prices: product_prices,
         cart_total: checkoutToken.live.subtotal.formatted,
-        customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email },
+        customer: { firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email, phone: shippingData.phone },
         shipping: { name: 'International', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry },
         fulfillment: { shipping_method: shippingData.shippingOption },
         transaction: { }

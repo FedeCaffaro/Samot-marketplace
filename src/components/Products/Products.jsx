@@ -11,18 +11,18 @@ const Products = ({ products, onAddToCart }) => {
 
   return (
     <main className={classes.content}>
-        <Box className={classes.banner}
-          component="img"
-          alt="$AMOT OR NOT"
-          src={banner}
-        />
-        <Typography className={classes.samotSubtitle}>NEW ARRIVALS</Typography>
-        <Grid container justify="flex-start" spacing={3}>
-        {products.map((product) => (
-          <Grid key={product.id} item xs={6} sm={6} md={4} lg={3}>
-            <Product product={product} onAddToCart={onAddToCart} />
-          </Grid>
-        ))}
+      <Box className={classes.banner}
+        component="img"
+        alt="$AMOT OR NOT"
+        src={banner}
+      />
+      <Typography className={classes.samotSubtitle}>NEW ARRIVALS</Typography>
+      <Grid container justify="flex-start" spacing={3}>
+      {products.map((product) => (
+        <Grid key={product.id} item xs={6} sm={6} md={4} lg={3}>
+          <Product product={product} onAddToCart={onAddToCart} />
+        </Grid>
+      ))}
       </Grid>
     </main>
   );

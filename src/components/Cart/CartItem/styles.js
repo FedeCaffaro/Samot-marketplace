@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles(() => ({
   cartItem: {
     backgroundColor: '#191919',
+    width: '100%',
   },
   media: {
     height: 200,
@@ -19,8 +20,10 @@ export default makeStyles(() => ({
     justifyContent: 'space-between',
     color: "white",
   },
-  cartActions: {
+  cardActions: {
+    display: 'flex',
     justifyContent: 'space-between',
+    alignSelf: 'baseline'
   },
   buttons: {
     display: 'flex',

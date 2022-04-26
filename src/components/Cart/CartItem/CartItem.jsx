@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Card, CardActions, CardContent, CardMedia, Grid  } from '@material-ui/core';
+import { Typography, Button, Card, CardActions, CardActionArea, CardContent, CardMedia, Grid  } from '@material-ui/core';
 import useStyles from './styles';
 
 const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart}) => {
@@ -19,14 +19,14 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart}) => {
           <Typography variant="h5">{item.line_total.formatted} $SAMOT</Typography>
         </Grid>
       </CardContent>
-      <CardActions className={classes.cartActions}>
-        <div className={classes.buttons}>
-          <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}><Typography className={classes.buttons}>-</Typography></Button>
-            <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
-          <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}><Typography className={classes.buttons}>+</Typography></Button>
-        </div>
-        <Button variant="contained" type="button" className={classes.checkoutButton} onClick={() => handleRemoveFromCart(item.id)}>Remove</Button>
-      </CardActions>
+        <CardActions className={classes.cardActions}>
+          <div className={classes.buttons}>
+            <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity - 1)}><Typography className={classes.buttons}>-</Typography></Button>
+              <Typography>&nbsp;{item.quantity}&nbsp;</Typography>
+            <Button type="button" size="small" onClick={() => handleUpdateCartQty(item.id, item.quantity + 1)}><Typography className={classes.buttons}>+</Typography></Button>
+          </div>
+          <Button variant="contained" type="button" className={classes.checkoutButton} onClick={() => handleRemoveFromCart(item.id)}>Remove</Button>
+        </CardActions>
     </Card>
   );
 };

@@ -4,10 +4,10 @@ export default makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   container: {
     [theme.breakpoints.up('xl')]: {
-      height: `calc(100vh - 80px -  60px)`,
+      minHeight: `calc(100vh - 80px -  60px)`,
     },
     [theme.breakpoints.up('xs')]: {
-      height: `calc(100vh - 120px)`,
+      minHeight: `calc(100vh - 120px)`,
     },
   },
   yellowPaper: {
